@@ -180,4 +180,4 @@ function aoc() {
 }
 
 
-
+[ -z "$TMUX" ] && (tmux attach || tmux new)
