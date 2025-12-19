@@ -108,8 +108,9 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias c="clear"
 alias cat="batcat"
-alias espidf=". /home/rasmus/esp/esp-idf/export.sh"
+alias espidf=". $HOME/esp/esp-idf/export.sh"
 alias weather="curl -s wttr.in/Aalborg"
+alias python3.10="$HOME/python310/bin/python3.10"
 
 # Initialize zoxide for zsh
 eval "$(zoxide init --cmd cd zsh)"
@@ -175,8 +176,9 @@ function aoc() {
      	> data.txt
 
 	touch main.py
+	touch test_data.txt
 
-	echo "def get_data(test=False):\n\twith open('data.txt', 'r') as file:\n\t\tdata = file.read()\n\treturn data\n\n\nif __name__ == '__main__':\n\tdata = get_data()" > main.py
+	echo "def get_data(test=False):\n\tif not test:\n\t\twith open(\"data.txt\", \"r\") as file:\n\t\t\tdata = file.read()\n\telse:\n\t\twith open(\"test_data.txt\", \"r\") as file:\n\t\t\tdata = file.read()\n\treturn data\n\n\nif __name__ == '__main__':\n\tdata = get_data()" > main.py
 }
 
 
