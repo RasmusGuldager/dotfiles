@@ -109,8 +109,10 @@ source $ZSH/oh-my-zsh.sh
 alias c="clear"
 alias cat="batcat"
 alias espidf=". $HOME/esp/esp-idf/export.sh"
-alias weather="curl -s wttr.in/Aalborg"
 alias python3.10="$HOME/python310/bin/python3.10"
+
+alias vpn-on="sudo systemctl start vpnagentd"
+alias vpn-off="sudo systemctl stop vpnagentd"
 
 # Initialize zoxide for zsh
 eval "$(zoxide init --cmd cd zsh)"
@@ -119,20 +121,16 @@ eval "$(zoxide init --cmd cd zsh)"
 function update {
     TIMESTAMP=$(date +"%Y-%d/%m %H:%M:%S")
     COMMIT_MESSAGE="Auto commit at $TIMESTAMP"
-    CURRENT_DIR="$PWD"
-    
-    cd "/home/rasmus/Desktop/Aalborg Universitet"
+
+    # Use pushd/popd to handle directory changes safely
+    pushd "/home/rasmus/Desktop/Aalborg Universitet" > /dev/null
+
     git add .
     git commit -m "$COMMIT_MESSAGE"
-    OUTPUT=$(git push 2>&1)
-    
-    if [[ "$OUTPUT" == *"Everything up-to-date"* ]]; then
-        echo "Nothing was pushed"
-    else
-        echo "Pushed with commit message: $COMMIT_MESSAGE"
-    fi
-    
-    cd "$CURRENT_DIR"
+
+    git push
+
+    popd > /dev/null
 }
 
 
