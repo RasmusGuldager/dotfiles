@@ -141,7 +141,7 @@ function maze() {
     # Trap Ctrl+C to restore dir
     trap 'cd "$ORIGINAL_DIR"; echo -e "\nRestored to $ORIGINAL_DIR"; return' INT
 
-    cd /home/rasmus/maze_script/Moving_maze || return
+    cd /home/rasmus/Maze_Runner/Moving_maze || return
     python3 main.py
 
     cd "$ORIGINAL_DIR"
