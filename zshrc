@@ -114,6 +114,8 @@ alias python3.10="$HOME/python310/bin/python3.10"
 alias vpn-on="sudo systemctl start vpnagentd"
 alias vpn-off="sudo systemctl stop vpnagentd"
 
+alias chirp="ssh -fN -o ExitOnForwardFailure=yes -L 8080:localhost:8080 senvio@chirpstack.frp.dev.metrig.dk && firefox localhost:8080"
+
 # Initialize zoxide for zsh
 eval "$(zoxide init --cmd cd zsh)"
 
@@ -123,7 +125,7 @@ function update {
     COMMIT_MESSAGE="Auto commit at $TIMESTAMP"
 
     # Use pushd/popd to handle directory changes safely
-    pushd "/home/rasmus/Desktop/Aalborg Universitet" > /dev/null
+    pushd "/home/rasmus/Desktop/Obsidian" > /dev/null
 
     git add .
     git commit -m "$COMMIT_MESSAGE"
